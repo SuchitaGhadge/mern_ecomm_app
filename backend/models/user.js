@@ -25,7 +25,6 @@ var userSchema = new mongoose.Schema({
         type : String,
         trim : true
     },
-    // TODO : come back here
     encrypt_password : {
         type : String,
         required : true
@@ -53,7 +52,7 @@ userSchema.virtual("password")
     return this._password
 })
 
-userSchema.method = {
+userSchema.methods = {
 
     // authenticate
     authenticate : function(plainpassword){

@@ -9,9 +9,10 @@ require('dotenv').config();
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const cors = require('cors');
+const authRoutes = require("./routes/authentication");
 // console.log("process",process.env)
 
-
+// DB Connection
 mongoose.connect(process.env.DATABASE, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
@@ -21,12 +22,20 @@ mongoose.connect(process.env.DATABASE, {
     console.log(`DB CONNECTION FAILED WITH ${err}`)
 });
 
+// Middlewares
+app.use(cors());
+app.use(cookieParser());
+app.use(bodyParser.json());
+
+// Routes
+app.use("/api", authRoutes)
+
+// PORT
 const port = process.env.PORT || 8000;
 
+
+// Starting a server
 app.listen(port, () => {
     console.log(`Server is running at port ${port}`);
 });
 
-app.use(cors());
-app.use(cookieParser());
-app.use(bodyParser.json());

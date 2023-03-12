@@ -10,6 +10,7 @@ const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const cors = require('cors');
 const authRoutes = require("./routes/authentication");
+const userRoutes = require("./routes/user")
 // console.log("process",process.env)
 
 // DB Connection
@@ -29,6 +30,7 @@ app.use(bodyParser.json());
 
 // Routes
 app.use("/api", authRoutes)
+app.use("/api", userRoutes)
 
 // PORT
 const port = process.env.PORT || 8000;

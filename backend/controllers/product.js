@@ -18,7 +18,7 @@ exports.getProductById = (req, res, next, id) => {
     })
 }
 
-exports.createProduct = () => {
+exports.createProduct = (req, res) => {
     let form = new formidable.IncomingForm();
     form.keepExtensions = true;
 
@@ -29,15 +29,13 @@ exports.createProduct = () => {
             })
         }
 
-        const {name, description, price, category, stock, size} = fields;
-
+        const {name, description, price, category, stock} = fields;
         if(
             !name ||
             !description ||
             !price ||
             !category ||
-            !stock ||
-            !size 
+            !stock
             ){
                 return res.status(400).json({
                     error : "Please provide all fields"
@@ -45,6 +43,77 @@ exports.createProduct = () => {
         }
 
         let product = new Product(fields);
+        // handle file here
+        if(file.photo){
+            if(file.photo.size > 3000000){
+                return res.status(400).json({
+                    error : "File size is too big!"
+                })
+            }
+            product.photo.data = fs.readFileSync(file.photo.filepath);
+            product.photo.contentType = file.photo.type;
+        }
+
+        // save to DB
+        product.save((err, product) => {
+            if(err){
+                // console.log("err", err)
+                return res.status(400).json({
+                    error: "Saving file in DB failed"
+                });
+            }
+
+            res.json(product)
+        })
+    })
+}
+
+exports.getProduct = (req, res) => {
+    req.product.photo = undefined;
+    return res.json(req.product);
+}
+
+exports.photo = (req, res, next) => {
+    if(req.product.photo.data){
+        res.set("Content-Type", req.product.photo.contentType)
+        return res.send(req.product.photo.data)
+    }
+    next();
+}
+
+// delete controller
+exports.deleteProduct = () => {
+    let product = req.product;
+    console.log("product", product);
+    product.remove((err, deletedProduct) => {
+        console.log("deletedProduct", deletedProduct);
+        if(err){
+            return res.status(400).json({
+                error: "Failed to delete product"
+            })
+        }
+
+        res.json({
+            message: "Deletion was a success",
+            deletedProduct
+        })
+    })
+}
+
+exports.updateProduct = () => {
+    let form = new formidable.IncomingForm();
+    form.keepExtensions = true;
+
+    form.parse(req, (err, fields, file) => {
+        if(err){
+            return res.status(400).json({
+                error: 'Problem with image'
+            })
+        }
+
+        // updation code
+        let product = req.product;
+        product = _.extend(product, fields);
 
         // handle file here
         if(file.photo){
@@ -53,15 +122,16 @@ exports.createProduct = () => {
                     error : "File size is too big!"
                 })
             }
-            product.photo.data = fs.readFileSync(file.photo.path);
+            product.photo.data = fs.readFileSync(file.photo.filepath);
             product.photo.contentType = file.photo.type;
         }
 
         // save to DB
         product.save((err, product) => {
             if(err){
+                // console.log("err", err)
                 return res.status(400).json({
-                    error: "Saving file in DB failed"
+                    error: "Updation of product failed"
                 });
             }
 

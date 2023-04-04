@@ -82,7 +82,7 @@ exports.photo = (req, res, next) => {
 }
 
 // delete controller
-exports.deleteProduct = () => {
+exports.deleteProduct = (req, res) => {
     let product = req.product;
     console.log("product", product);
     product.remove((err, deletedProduct) => {
@@ -100,7 +100,8 @@ exports.deleteProduct = () => {
     })
 }
 
-exports.updateProduct = () => {
+// update controller
+exports.updateProduct = (req, res) => {
     let form = new formidable.IncomingForm();
     form.keepExtensions = true;
 
@@ -137,5 +138,58 @@ exports.updateProduct = () => {
 
             res.json(product)
         })
+    })
+}
+
+// product listing
+exports.getAllProducts = (req, res) => {
+    let limit = req.query.limit? parseInt(req.query.limit) : 8;
+    let sortBy = req.query.sortBy ? req.query.sortBy : "_id";
+    Product.find()
+    .select("-photo")
+    .populate("category")
+    .sort([[sortBy, "asc"]])
+    .limit(limit)
+    .exec((err, products) => {
+        if(err){
+            res.status(400).json({
+                error: "No product found"
+            })
+        }
+
+        res.json(products)
+    })
+}
+
+exports.getAllUniqueCategories = (req, res) => {
+    Product.distinct("category", {}, (err, category) => {
+        if(err){
+            return res.status(400).json({
+                error : "No category found"
+            })
+        }
+
+        res.json(category);
+    })
+}
+
+exports.updateStock = (req, res, next) => {
+    let myOperations = req.body.order?.products?.map(product => {
+        return {
+            updateOne : {
+                filter : {_id : product._id},
+                update : {$inc : {stock: -product.count, sold: +product.count}}
+            }
+        }
+    })
+
+    Product.bulkWrite(myOperations, {}, (err, products) => {
+        if(err){
+            return res.status(400).json({
+                error: "Bulk operation failed"
+            })
+        }
+
+        next();
     })
 }

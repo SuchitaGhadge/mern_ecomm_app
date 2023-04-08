@@ -1,7 +1,7 @@
 import React from 'react'
-
+import "../styles.css"
 export default function Home() {
   return (
-    <div className='text-red-900' >Hello frontend</div>
+    <div className='text-white underline font-bold' >Hello frontend</div>
   )
 }

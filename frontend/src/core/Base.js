@@ -1,5 +1,5 @@
 import React from 'react'
-
+import Navbar from './Navbar'
 export default function Base({
     title = "My title",
     description = "My description",
@@ -8,9 +8,10 @@ export default function Base({
 }) {
   return (
     <section>
+        <Navbar />
         <section className='container'>
             <div className="jumbotron bg-inherit text-white text-center">
-                <h2 className='text-5xl'>{title}</h2>
+                <h2 className='text-5xl py-3'>{title}</h2>
                 <p className='lead'>{description}</p>
             </div>
             <main className={className}>{children}</main>

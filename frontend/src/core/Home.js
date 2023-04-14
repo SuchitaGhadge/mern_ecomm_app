@@ -6,6 +6,6 @@ import Base from './Base'
 export default function Home() {
   console.log("API is...", API)
   return (
-    <Base title='Home page' className='text-white underline font-bold' >Hello frontend</Base>
+    <Base title='Home page' description='Welcome to the Tshirt store' className='text-white underline font-bold' >Hello frontend</Base>
   )
 }

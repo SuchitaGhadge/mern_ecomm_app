@@ -48,7 +48,7 @@ export default function Signup() {
                 })
             }
         })
-        .catch(err => console.error("error in signup", err))
+        .catch(console.error("error in signup"))
     }
 
     const signUpForm = () => {
@@ -58,28 +58,28 @@ export default function Signup() {
                     <form >
                         <div className='w-full mt-3'>
                             <label className='block text-base mb-2'>Name</label>
-                            <input type="text" id='name' className='border rounded-sm w-full text-base px-2 py-1 focus:outline-none focus:ring-0 focus:border-gray-600 text-black' placeholder='Enter name'
+                            <input type="text" id='name' className='border rounded-sm w-full text-base px-2 py-1 focus:outline-none focus:ring-0 focus:border-gray-600 text-slate-700' placeholder='Enter name'
                             value={name}
                             onChange={handleChange("name")}
                             />
                         </div>
                         <div className='w-full mt-3'>
                         <label className='block text-base mb-2'>Last Name</label>
-                        <input type="text" id='lastname' className='border rounded-sm w-full text-base px-2 py-1 focus:outline-none focus:ring-0 focus:border-gray-600 text-black' placeholder='Enter lastname'
+                        <input type="text" id='lastname' className='border rounded-sm w-full text-base px-2 py-1 focus:outline-none focus:ring-0 focus:border-gray-600 text-slate-700' placeholder='Enter lastname'
                         value={lastname}
                         onChange={handleChange("lastname")}
                         />
                     </div>
                         <div className='mt-3'>
                             <label className='block text-base mb-2'>Email</label>
-                            <input type="email" id='email' className='border rounded-sm w-full text-base px-2 py-1 focus:outline-none focus:ring-0 focus:border-gray-600 text-black' placeholder='Enter email'
+                            <input type="email" id='email' className='border rounded-sm w-full text-base px-2 py-1 focus:outline-none focus:ring-0 focus:border-gray-600 text-slate-700' placeholder='Enter email'
                             value={email}
                             onChange={handleChange("email")}
                             />
                         </div>
                         <div>
                             <label className='block text-base mb-2'>Password</label>
-                            <input type="password" className='border rounded-sm w-full text-base px-2 py-1 focus:outline-none focus:ring-0 focus:border-gray-600 text-black' placeholder='Enter password'
+                            <input type="password" className='border rounded-sm w-full text-base px-2 py-1 focus:outline-none focus:ring-0 focus:border-gray-600 text-slate-700' placeholder='Enter password'
                             value={password}
                             onChange={handleChange("password")}
                             />

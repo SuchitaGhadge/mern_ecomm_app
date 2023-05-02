@@ -22,20 +22,24 @@ export default function Navbar() {
                             };
                           }}  to='/cart'>Cart</NavLink>
                     </li>
-                    <li>
+                    {isAuthenticated() && isAuthenticated().user.role === 0 && (
+                      <li>
                         <NavLink style={({ isActive }) => {
                             return {
                               color: isActive ? "green" : "white"
                             };
                           }}  to='/user/dashboard'>Dashboard</NavLink>
                     </li>
-                    <li>
+                    )}
+                    {isAuthenticated() && isAuthenticated().user.role === 1 && (
+                      <li>
                         <NavLink style={({ isActive }) => {
                             return {
                               color: isActive ? "green" : "white"
                             };
                           }}  to='/admin/dashboard'>Admin Dashboard</NavLink>
                     </li>
+                    )}
                     {!isAuthenticated() && (
                       <Fragment>
                       <li>

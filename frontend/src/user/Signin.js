@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Base from "../core/Base";
 
 import {signin, authenticate, isAuthenticated} from "../auth/helper"
-import { Link, Navigate  } from "react-router-dom";
+import {  Navigate  } from "react-router-dom";
 // Navigate replaces Redirect in React-Router-6
 export default function Signin() {
 
@@ -27,7 +27,7 @@ export default function Signin() {
         loading && (
           <div className="flex items-center justify-center w-full">
             <div className="w-1/2 px-6">
-            <div className="bg-blue-100 border border-green-400 text-green-700 px-4 py-3 rounded relative" role="alert"
+            <div className="bg-blue-100 border border-blue-400 text-blue-700 px-4 py-3 rounded relative" role="alert"
             >
             <span className="px-1">Loading...</span>
             </div>
@@ -93,9 +93,9 @@ const performRedirect = () => {
   console.log("inside redirect", didRedirect)
   if(didRedirect){
     if(user && user.role === 1){
-      return <p>Redirect to admin dashboard</p>
+      return <Navigate to='/admin/dashboard' />
     }else{
-      return <p>Redirect to user dahsboad</p>
+      return <Navigate to='/user/dashboard' />
     }
   }
   if(isAuthenticated()){

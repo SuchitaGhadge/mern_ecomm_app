@@ -7,6 +7,7 @@ import AdminRoute from './auth/helper/AdminRoutes'
 import PrivateRoute from './auth/helper/PrivateRoutes'
 import UserDashBoard from './user/UserDashBoard'
 import AdminDashBoard from './user/AdminDashBoard'
+import AddCategory from './admin/AddCategory'
 
 export default function AllRoutes() {
   return (
@@ -21,11 +22,13 @@ export default function AllRoutes() {
   <AdminRoute path='/admin/dashboard' element={<AdminDashBoard />}></AdminRoute> */}
 
   { /* React Router v6 way */}
-        <Route path='/user/dashboard' element={<PrivateRoute />}>
-          <Route path='/user/dashboard' element={<UserDashBoard />} />
+        <Route path='/user' element={<PrivateRoute />}>
+          <Route path='dashboard' element={<UserDashBoard />} />
         </Route>
-        <Route path='/admin/dashboard' element={<AdminRoute />} >
-        <Route path='/admin/dashboard' element={<AdminDashBoard />} /></Route>
+        <Route path='/admin' element={<AdminRoute />} >
+        <Route path='dashboard' element={<AdminDashBoard />} />
+        <Route path='create/category' exact element={<AddCategory />} />
+        </Route>
       </Routes>
     </BrowserRouter>
   )

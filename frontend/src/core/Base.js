@@ -10,7 +10,7 @@ export default function Base({
     <section>
         <Navbar />
         <section >
-            <div className="jumbotron bg-inherit text-white text-center">
+            <div className="py-10 jumbotron bg-inherit text-white text-center">
                 <h2 className='text-5xl py-3'>{title}</h2>
                 <p className='lead'>{description}</p>
             </div>

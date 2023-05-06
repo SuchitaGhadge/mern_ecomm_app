@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Base from "../core/Base";
 import { isAuthenticated } from "../auth/helper";
 import { Link } from "react-router-dom";
-import { CreateCategory } from "./helper/adminapicall";
+import { createCategory } from "./helper/adminapicall";
 
 export default function AddCategory() {
   const [name, setName] = useState("");
@@ -61,7 +61,7 @@ export default function AddCategory() {
     setSuccess(false)
 
     // backend request
-    CreateCategory(user._id, token, {name})
+    createCategory(user._id, token, {name})
     .then(data => {
       // console.log("category data ", data)
       if(data.error){

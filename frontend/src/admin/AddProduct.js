@@ -4,8 +4,11 @@ import { Link } from 'react-router-dom'
 import { useState } from 'react'
 import { useEffect } from 'react'
 import { getCategories } from './helper/adminapicall'
+import { isAuthenticated } from '../auth/helper'
 
 export default function AddProduct() {
+
+    const {user, token} = isAuthenticated()
 
     const [values, setValues] = useState({
         name: "",
@@ -26,7 +29,7 @@ export default function AddProduct() {
 
     const preload = () => {
         getCategories().then(data => {
-            console.log("preload data", data)
+            // console.log("preload data", data)
             if(data.error){
                 setValues({
                     ...values,
@@ -35,11 +38,9 @@ export default function AddProduct() {
             }else{
                 setValues({
                     ...values,
-                    categories: [...data],
+                    categories: data,
                     formData: new FormData()
                 })
-                // marked as bug
-                console.log("categories...", categories)
             }
         })
     }
@@ -49,7 +50,12 @@ export default function AddProduct() {
     }, [])
 
     const handleChange = name => event => {
-        // 
+        const value = name === "photo" ? event.target.file[0] : event.target.value
+        formData.set(name, value)
+        setValues({
+            ...values,
+            [name]:value
+        })
     }
 
     const onSubmit = (event) => {
@@ -105,8 +111,7 @@ export default function AddProduct() {
                 placeholder="Category"
               >
                 <option>Select</option>
-                <option value="a">a</option>
-                <option value="b">b</option>
+                {categories && categories.map(cate => (<option key={cate._id} value={cate._id}>{cate.name}</option>))}
               </select>
             </div>
             <div className="my-2">

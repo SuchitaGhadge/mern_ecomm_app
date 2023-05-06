@@ -8,6 +8,8 @@ import PrivateRoute from './auth/helper/PrivateRoutes'
 import UserDashBoard from './user/UserDashBoard'
 import AdminDashBoard from './user/AdminDashBoard'
 import AddCategory from './admin/AddCategory'
+import ManageCategories from './admin/ManageCategories'
+import AddProduct from './admin/AddProduct'
 
 export default function AllRoutes() {
   return (
@@ -28,6 +30,8 @@ export default function AllRoutes() {
         <Route path='/admin' element={<AdminRoute />} >
         <Route path='dashboard' element={<AdminDashBoard />} />
         <Route path='create/category' exact element={<AddCategory />} />
+        <Route path='categories' exact element={<ManageCategories />} />
+        <Route path='create/product' exact element={<AddProduct />} />
         </Route>
       </Routes>
     </BrowserRouter>

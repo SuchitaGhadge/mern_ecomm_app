@@ -26,6 +26,14 @@ const adminLeftSide = () => {
             </li>
             <li className="pl-6 py-3 border border-gray-300">
               <Link
+                to="/admin/categories"
+                className="text-green-600 hover:text-green-700 "
+              >
+                Manage Category
+              </Link>
+            </li>
+            <li className="pl-6 py-3 border border-gray-300">
+              <Link
                 to="/admin/create/product"
                 className=" text-green-600 hover:text-green-700"
               >

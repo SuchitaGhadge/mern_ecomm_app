@@ -81,7 +81,7 @@ export default function AddCategory() {
         <p className="pb-2 text-base text-semibold">Enter the Category</p>
         <input
           type="text"
-          className="block w-full rounded border border-solid border-cyan-600  bg-clip-padding px-3 py-[0.25rem] ext-base font-normal leading-[1.6] text-neutral-700 outline-none focus:border-none focus:text-neutral-700  focus:outline-none focus:ring dark:border-cyan-600 dark:text-neutral-200 dark:placeholder:text-neutral-200 dark:focus:border-primary"
+          className="block w-full rounded border border-solid border-cyan-600  bg-clip-padding px-3 py-[0.25rem] text-base font-normal leading-[1.6] text-neutral-700 outline-none focus:border-none focus:text-neutral-700  focus:outline-none focus:ring dark:border-cyan-600 dark:text-neutral-200"
           autoFocus
           required
           placeholder="For Ex. Summer"
@@ -94,10 +94,11 @@ export default function AddCategory() {
   );
 
   const goToDashboard = () => (
-    <div className="p-2">
-        <Link to='/admin/dashboard' className="mt-2 text-sm p-2 text-cyan-600 outline-none border-none hover:text-cyan-500">
-          Admin Home
-        </Link>
+    <div className="px-2 pt-5">
+        <Link to='/admin/dashboard' className="bg-gray-600 text-sm px-4 py-2 text-white border border-transparent transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:bg-gray-700 duration-300">
+        Admin Home
+      </Link>
+       
     </div>
   )
 

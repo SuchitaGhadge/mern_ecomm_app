@@ -2,6 +2,8 @@ import React from 'react'
 import Base from '../core/Base'
 import { Link } from 'react-router-dom'
 import { useState } from 'react'
+import { useEffect } from 'react'
+import { getCategories } from './helper/adminapicall'
 
 export default function AddProduct() {
 
@@ -9,10 +11,42 @@ export default function AddProduct() {
         name: "",
         description: "",
         price:"",
-        stock: "" 
+        stock: "" ,
+        photo: "",
+        categories: [],
+        category:"",
+        loading:false,
+        error:"",
+        createdProduct:"",
+        getRedirect:false,
+        formData:""
     })
 
-    const {name, description, price, stock} = values
+    const {name, description, price, stock, categories, category, loading, error, createdProduct, getRedirect, formData} = values
+
+    const preload = () => {
+        getCategories().then(data => {
+            console.log("preload data", data)
+            if(data.error){
+                setValues({
+                    ...values,
+                    error: data.error
+                })
+            }else{
+                setValues({
+                    ...values,
+                    categories: [...data],
+                    formData: new FormData()
+                })
+                // marked as bug
+                console.log("categories...", categories)
+            }
+        })
+    }
+
+    useEffect(() => {
+        preload()
+    }, [])
 
     const handleChange = name => event => {
         // 

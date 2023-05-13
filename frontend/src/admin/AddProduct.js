@@ -96,9 +96,9 @@ export default function AddProduct() {
             <div
               className="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative"
               role="alert"
-              style={{ display: createProduct ? "" : "none" }}
+              style={{ display: createdProduct ? "block" : "none" }}
             >
-              <span className="font-bold">{createProduct} created successsfully</span>
+              <span className="font-bold">{createdProduct} created successsfully</span>
               <span className="absolute top-0 bottom-0 right-0 px-4 py-3">
                 <svg
                   className="fill-current h-6 w-6 text-green-500"
@@ -176,7 +176,7 @@ export default function AddProduct() {
                 onChange={handleChange("stock")}
                 type="number"
                 className="block w-full rounded border border-solid border-white-600  bg-clip-padding px-3 py-[0.25rem] text-base font-normal leading-[1.6] text-neutral-700 outline-none focus:border-none focus:text-neutral-700 focus:outline-none focus:ring dark:border-white-600"
-                placeholder="Quantity"
+                placeholder="stock"
                 value={stock}
               />
             </div>

@@ -10,6 +10,7 @@ import AdminDashBoard from './user/AdminDashBoard'
 import AddCategory from './admin/AddCategory'
 import ManageCategories from './admin/ManageCategories'
 import AddProduct from './admin/AddProduct'
+import ManageProducts from './admin/ManageProducts'
 
 export default function AllRoutes() {
   return (
@@ -32,6 +33,7 @@ export default function AllRoutes() {
         <Route path='create/category' exact element={<AddCategory />} />
         <Route path='categories' exact element={<ManageCategories />} />
         <Route path='create/product' exact element={<AddProduct />} />
+        <Route path='products' exact element={<ManageProducts />} />
         </Route>
       </Routes>
     </BrowserRouter>

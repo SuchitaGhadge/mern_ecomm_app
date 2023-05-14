@@ -11,6 +11,7 @@ import AddCategory from './admin/AddCategory'
 import ManageCategories from './admin/ManageCategories'
 import AddProduct from './admin/AddProduct'
 import ManageProducts from './admin/ManageProducts'
+import UpdateProduct from './admin/UpdateProduct'
 
 export default function AllRoutes() {
   return (
@@ -34,6 +35,7 @@ export default function AllRoutes() {
         <Route path='categories' exact element={<ManageCategories />} />
         <Route path='create/product' exact element={<AddProduct />} />
         <Route path='products' exact element={<ManageProducts />} />
+        <Route path='product/update/:productId' exact element={<UpdateProduct />} />
         </Route>
       </Routes>
     </BrowserRouter>

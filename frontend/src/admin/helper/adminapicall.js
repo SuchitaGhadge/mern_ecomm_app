@@ -23,7 +23,9 @@ export const getCategories = () => {
     return fetch(`${API}categories`, {
         method:"GET"
     })
-    .then(res => res.json())
+    .then(res => {        
+        return  res.json()
+    })
     .catch(err => console.error("Error in get all categories"))
 }
 
@@ -37,7 +39,9 @@ export const createProduct = (userId, token, product) => {
         },
         body: product
     })
-    .then(res => res.json())
+    .then(res => {        
+        return  res.json()
+    })
     .catch(err => console.error("Error in create product", err))
 }
 
@@ -46,7 +50,9 @@ export const getProducts = () => {
     return fetch(`${API}products`, {
         method:"GET"
     })
-    .then(res => res.json())
+    .then(res => {        
+        return  res.json()
+    })
     .catch(err => console.error("error in get all products", err))
 }
 
@@ -59,7 +65,9 @@ export const deleteProduct = (productId, userId, token) => {
             Authorization: `Bearer ${token}`
         }
     })
-    .then(res => res.json())
+    .then(res => {        
+        return  res.json()
+    })
     .catch(err => console.error("Error in delete product", err))
 }
 
@@ -69,12 +77,14 @@ export const getProduct = (productId) => {
     return fetch(`${API}product/${productId}`,{
         method: "GET"
     })
-    .then(res => res.json())
+    .then(res => {        
+        return  res.json()
+    })
     .catch(err => console.error("error in get product", err))
 }
 
 // update a product
-export const UpdateProduct = (productId, userId, token, product) => {
+export const UpdateAProduct = (productId, userId, token, product) => {
     return fetch(`${API}product/${productId}/${userId}`, {
         method: "PUT",
         headers: {
@@ -83,6 +93,8 @@ export const UpdateProduct = (productId, userId, token, product) => {
         },
         body: product
     })
-    .then(res => res.json())
+    .then(res => {        
+        return  res.json()
+    })
     .catch(err => console.error("Error in update product", err))
 }

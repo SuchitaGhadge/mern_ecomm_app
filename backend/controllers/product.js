@@ -84,15 +84,12 @@ exports.photo = (req, res, next) => {
 // delete controller
 exports.deleteProduct = (req, res) => {
     let product = req.product;
-    console.log("product", product);
     product.remove((err, deletedProduct) => {
-        console.log("deletedProduct", deletedProduct);
         if(err){
             return res.status(400).json({
                 error: "Failed to delete product"
             })
         }
-
         res.json({
             message: "Deletion was a success",
             deletedProduct

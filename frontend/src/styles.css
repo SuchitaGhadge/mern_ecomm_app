@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+.card{
+    @apply rounded overflow-hidden shadow-md;
+}
+
 .btn,
 .jumbotron,
 .nav :hover {

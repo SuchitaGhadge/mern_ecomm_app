@@ -1,20 +1,38 @@
 import React from "react";
+import ImageHelper from "../helper/ImageHelper";
 
-export default function Card() {
+export default function Card({product,
+addToCart = true, removeFromCart = false,
+}) {
+
+  const cardTitle = product? product.name : "A random tshirt photo"
+  const cardDescription = product? product.description : "A random tshirt photo from internet"
+  const cardPrice = product? product.price : "10"
+  console.log("product in card", product)
+  const showAddToCart = (addToCart) => {
+    return (
+      addToCart && (<button className="block text-base w-full border border-green-500 text-green-500 my-3 hover:bg-green-500 hover:text-white transition ease-out duration-500">Add to Cart</button>)
+    )
+  }
+
+  const showRemoveFromCart = (removeFromCart) => {
+    return (
+      removeFromCart && (<button className="block text-base w-full border border-red-400 text-red-400 my-3 hover:bg-red-500 hover:text-white transition ease-out duration-500">Remove from Cart</button>)
+    )
+  }  
+
   return (
     <div className="card">
-      <img
-        class="w-full object-cover"
-        src="https://tse1.mm.bing.net/th?id=OIP.fBe1gguUHhEyZuradl-J6QHaEX&pid=Api&P=0&h=180"
-        alt="Kebabs"
-      />
+      <ImageHelper product={product} />
       <div className="m-4">
-        <span className="block font-bold text-base py-1 mb-3">The Coldest Sunset</span>
-        <span className="px-6 py-1 rounded bg-green-500">$ 5</span>
+        <span className="block font-bold text-lg py-1 capitalize">{cardTitle}</span> 
+        <span className="block text-base py-1 mb-3">{cardDescription}</span> 
+        <span className="px-6 py-1 rounded bg-green-500 text-sm">$ {cardPrice}</span>
       </div>
       <div className="m-4">
-        <button className="block text-base w-full border border-green-500 text-green-500 my-3">Add to Cart</button>
-        <button className="block text-base w-full border border-red-400 text-red-400 my-3">Remove from Cart</button>
+        {showAddToCart(addToCart)}
+        {showRemoveFromCart(removeFromCart)}
+        
       </div>
     </div>
   );

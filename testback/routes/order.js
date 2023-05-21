@@ -30,7 +30,7 @@ router.get("/order/all/:userId", isSignedIn, isAuthenticated, isAdmin, getAllOrd
 
 // status of order
 router.get("/order/status/:userId", isSignedIn, isAuthenticated, isAdmin, getOrderStatus)
-router.puut("/order/:orderId/status/:userId", isSignedIn, isAuthenticated, isAdmin, updateStatus)
+router.put("/order/:orderId/status/:userId", isSignedIn, isAuthenticated, isAdmin, updateStatus)
 
 
 module.exports = router;

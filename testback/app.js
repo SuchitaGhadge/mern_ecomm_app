@@ -15,6 +15,7 @@ const authRoutes = require("./routes/authentication");
 const userRoutes = require("./routes/user");
 const categoryRoutes = require("./routes/category");
 const productRoutes = require("./routes/product");
+const paymentBRoutes = require("./routes/paymentb"); //braintree route
 // console.log("process",process.env)
 
 // DB Connection
@@ -37,7 +38,7 @@ app.use("/api", authRoutes)
 app.use("/api", userRoutes)
 app.use("/api", categoryRoutes)
 app.use("/api", productRoutes)
-
+app.use("/api", paymentBRoutes);
 // PORT
 const port = process.env.PORT || 8000;
 

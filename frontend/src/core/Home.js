@@ -15,7 +15,6 @@ export default function Home() {
 
   const loadAllProducts = () => {
     getProducts().then(data => {
-      console.log("product data", data)
       if(data.error){
         setError(data.error)
       }else{

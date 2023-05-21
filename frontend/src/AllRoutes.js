@@ -12,6 +12,7 @@ import ManageCategories from './admin/ManageCategories'
 import AddProduct from './admin/AddProduct'
 import ManageProducts from './admin/ManageProducts'
 import UpdateProduct from './admin/UpdateProduct'
+import Cart from './core/Cart'
 
 export default function AllRoutes() {
   return (
@@ -20,6 +21,7 @@ export default function AllRoutes() {
         <Route path='/' element={<Home />} />
         <Route path='/signup' element={<Signup />} />
         <Route path='/signin' element={<Signin />} />
+        <Route path='/cart' element={<Cart />} />
         
         { /* React Router v5 way */}
        {/* <PrivateRoute path='/user/dashboard' element={<UserDashBoard />}></PrivateRoute>

@@ -14,7 +14,7 @@ export default function Cart() {
     }, [reload])
     
     
-    const loadAllProducts = () => {
+    const loadAllProducts = (products) => {
         return(
             <section>
                 <h2>This section is to load products </h2>
@@ -41,8 +41,8 @@ export default function Cart() {
 
   return (
     <Base title='Cart page' description='Ready to checkout' className='text-white'>
-          <div className='grid grid-cols-2 gap-10 '>
-            {loadAllProducts()}
+          <div className='grid grid-cols-1 md:grid-cols-2 gap-10 '>
+            {products.length>0? loadAllProducts(products) : (<h3>Cart is empty</h3>)}
             {loadCheckout()}
           </div>
     </Base>

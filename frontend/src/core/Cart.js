@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { API } from '../backend'
+// import { API } from '../backend'
 import "../styles.css"
 import Base from './Base'
 import Card from './reusableComponents/Card'
